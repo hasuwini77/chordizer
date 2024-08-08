@@ -11,41 +11,43 @@ type Chord = {
   image: string;
 };
 
-const chords: Chord[] = [
-  { name: "A", type: "major", image: "/chords/AMaj.png" },
-  { name: "Am", type: "minor", image: "/chords/Amin.png" },
-  { name: "A#", type: "major", image: "/chords/A-sharpMaj.png" },
-  { name: "A#m", type: "minor", image: "/chords/A-sharpmin.png" },
-  { name: "B", type: "major", image: "/chords/BMaj.png" },
-  { name: "Bm", type: "minor", image: "/chords/Bmin.png" },
+const chordsInKeyC: Chord[] = [
   { name: "C", type: "major", image: "/chords/CMaj.png" },
-  { name: "Cm", type: "minor", image: "/chords/Cmin.png" },
-  { name: "C#", type: "major", image: "/chords/C-sharpMaj.png" },
-  { name: "C#m", type: "minor", image: "/chords/C-sharpmin.png" },
-  { name: "D", type: "major", image: "/chords/DMaj.png" },
   { name: "Dm", type: "minor", image: "/chords/Dmin.png" },
-  { name: "D#", type: "major", image: "/chords/D-sharpMaj.png" },
-  { name: "D#m", type: "minor", image: "/chords/D-sharpmin.png" },
-  { name: "E", type: "major", image: "/chords/EMaj.png" },
   { name: "Em", type: "minor", image: "/chords/Emin.png" },
   { name: "F", type: "major", image: "/chords/FMaj.png" },
-  { name: "Fm", type: "minor", image: "/chords/Fmin.png" },
-  { name: "F#", type: "major", image: "/chords/F-sharpMaj.png" },
-  { name: "F#m", type: "minor", image: "/chords/F-sharpmin.png" },
   { name: "G", type: "major", image: "/chords/GMaj.png" },
-  { name: "Gm", type: "minor", image: "/chords/Gmin.png" },
-  { name: "G#", type: "major", image: "/chords/G-sharpMaj.png" },
-  { name: "G#m", type: "minor", image: "/chords/G-sharpmin.png" },
+  { name: "Am", type: "minor", image: "/chords/Amin.png" },
 ];
 
-// Generate a random chord progression of 4 chords
+const chordsInKeyG: Chord[] = [
+  { name: "G", type: "major", image: "/chords/GMaj.png" },
+  { name: "Am", type: "minor", image: "/chords/Amin.png" },
+  { name: "Bm", type: "minor", image: "/chords/Bmin.png" },
+  { name: "C", type: "major", image: "/chords/CMaj.png" },
+  { name: "D", type: "major", image: "/chords/DMaj.png" },
+  { name: "Em", type: "minor", image: "/chords/Emin.png" },
+];
+
+const chordsInKeyD: Chord[] = [
+  { name: "D", type: "major", image: "/chords/DMaj.png" },
+  { name: "Em", type: "minor", image: "/chords/Emin.png" },
+  { name: "F#m", type: "minor", image: "/chords/F-sharpmin.png" },
+  { name: "G", type: "major", image: "/chords/GMaj.png" },
+  { name: "A", type: "major", image: "/chords/AMaj.png" },
+  { name: "Bm", type: "minor", image: "/chords/Bmin.png" },
+];
+
+const chordGroups = [chordsInKeyC, chordsInKeyG, chordsInKeyD];
+
+// Generate a random chord progression of 4 unique chords from the same key
 function generateChordProgression(): Chord[] {
-  const progression: Chord[] = [];
-  for (let i = 0; i < 4; i++) {
-    const randomChord = chords[Math.floor(Math.random() * chords.length)];
-    progression.push(randomChord);
-  }
-  return progression;
+  const numChords = 4;
+  const selectedGroup =
+    chordGroups[Math.floor(Math.random() * chordGroups.length)];
+  const shuffledChords = [...selectedGroup].sort(() => 0.5 - Math.random());
+
+  return shuffledChords.slice(0, numChords);
 }
 
 export default function ChordGenerator() {
