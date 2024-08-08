@@ -1,3 +1,11 @@
+import OutlinedCard from "./components/Card";
+
 export default function Home() {
-  return <main>Hello Boy!</main>;
+  return (
+    <main>
+      <div>
+        <OutlinedCard />
+      </div>
+    </main>
+  );
 }
