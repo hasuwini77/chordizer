@@ -1,10 +1,10 @@
-import OutlinedCard from "./components/Card";
+import ChordGenerator from "./components/ChordGenerator";
 
 export default function Home() {
   return (
     <main>
       <div>
-        <OutlinedCard />
+        <ChordGenerator />
       </div>
     </main>
   );
