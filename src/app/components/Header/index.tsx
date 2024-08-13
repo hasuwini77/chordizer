@@ -20,13 +20,13 @@ const Header = () => {
     <Box
       sx={{
         textAlign: "center",
-        fontSize: "1.6rem",
+        fontSize: "1.5rem",
         borderBottom: "2px solid rgba(171, 71, 188, 0.6)",
         boxShadow:
           "0 4px 8px rgba(180, 82, 205, 0.5), 0 0 25px rgba(180, 82, 205, 0.4)",
         p: 1,
         width: "100%",
-        height: "30%",
+        height: "25%",
         backgroundColor: "#E0BBE4",
         color: "white",
         position: "sticky",
