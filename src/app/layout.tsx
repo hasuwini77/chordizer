@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
+import { GlobalStyles } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "./theme";
 
@@ -20,6 +21,26 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AppRouterCacheProvider options={{ key: "css" }}>
+          <GlobalStyles
+            styles={{
+              html: {
+                margin: 0,
+                padding: 0,
+                boxSizing: "border-box",
+                height: "100%",
+              },
+              body: {
+                margin: 0,
+                padding: 0,
+                boxSizing: "inherit",
+                height: "100%",
+                backgroundColor: "#7A89C2",
+              },
+              "*": {
+                boxSizing: "inherit",
+              },
+            }}
+          />
           <ThemeProvider theme={theme}>{children}</ThemeProvider>
         </AppRouterCacheProvider>
       </body>
