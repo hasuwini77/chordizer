@@ -4,6 +4,9 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Typography, Card, CardContent, CardMedia } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
 
 type Chord = {
   name: string;
@@ -76,28 +79,66 @@ export default function ChordGenerator() {
       {progression.length > 0 && (
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "row",
+            display: { xs: "block", sm: "flex" },
+            flexDirection: { sm: "row" },
             gap: 2,
             flexWrap: "wrap",
             justifyContent: "center",
+            width: "100%",
           }}
         >
-          {progression.map((chord, index) => (
-            <Card key={index} sx={{ maxWidth: 250, mb: 2 }}>
-              <CardMedia
-                component="img"
-                height="140"
-                image={chord.image}
-                alt={chord.name}
-              />
-              <CardContent>
-                <Typography variant="h6" component="div">
-                  {chord.name}
-                </Typography>
-              </CardContent>
-            </Card>
-          ))}
+          {/* Swiper for mobile screens */}
+          <Box sx={{ display: { xs: "block", sm: "none" } }}>
+            <Swiper spaceBetween={10} slidesPerView={1} centeredSlides={true}>
+              {progression.map((chord, index) => (
+                <SwiperSlide key={index}>
+                  <Card sx={{ width: "80%", margin: "0 auto", mb: 2 }}>
+                    <CardMedia
+                      component="img"
+                      height="150"
+                      image={chord.image}
+                      alt={chord.name}
+                      sx={{ objectFit: "contain" }}
+                    />
+                    <CardContent sx={{ padding: "8px" }}>
+                      <Typography
+                        variant="h6"
+                        component="div"
+                        sx={{ fontSize: "1.2rem", textAlign: "center" }}
+                      >
+                        {chord.name}
+                      </Typography>
+                    </CardContent>
+                  </Card>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </Box>
+          {/* Flexbox row for larger screens */}
+          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
+            {progression.map((chord, index) => (
+              <Card
+                key={index}
+                sx={{ maxWidth: { xs: "100%", sm: 250 }, mb: 2 }}
+              >
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={chord.image}
+                  alt={chord.name}
+                />
+                <CardContent>
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    sx={{ fontSize: "1.5rem", textAlign: "center" }}
+                  >
+                    {chord.name}
+                  </Typography>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
         </Box>
       )}
     </Box>
