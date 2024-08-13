@@ -24,9 +24,9 @@ const Header = () => {
         borderBottom: "2px solid rgba(171, 71, 188, 0.6)",
         boxShadow:
           "0 4px 8px rgba(180, 82, 205, 0.5), 0 0 25px rgba(180, 82, 205, 0.4)",
-        p: 1,
+        p: 0.5,
         width: "100%",
-        height: "25%",
+        height: { xs: "19vh", sm: "12vh" },
         backgroundColor: "#E0BBE4",
         color: "white",
         position: "sticky",

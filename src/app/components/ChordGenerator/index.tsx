@@ -9,8 +9,9 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
+import SaveIcon from "@mui/icons-material/Save";
 
 type Chord = {
   name: string;
@@ -60,9 +61,21 @@ function generateChordProgression(): Chord[] {
 export default function ChordGenerator() {
   const [progression, setProgression] = useState<Chord[]>([]);
 
+  useEffect(() => {
+    const savedProgression = localStorage.getItem("chordProgression");
+    if (savedProgression) {
+      setProgression(JSON.parse(savedProgression));
+    }
+  }, []);
+
   const handleClick = () => {
     const newProgression = generateChordProgression();
     setProgression(newProgression);
+  };
+
+  const handleSave = () => {
+    localStorage.setItem("chordProgression", JSON.stringify(progression));
+    console.log("Progression saved!");
   };
 
   return (
@@ -70,11 +83,9 @@ export default function ChordGenerator() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: { xs: "center", sm: "space-evenly" },
-        justifyContent: "center",
-        flex: 1,
-        gap: { xs: 5, sm: 15 },
-        p: 2,
+        justifyContent: "space-evenly",
+        alignItems: "center",
+        height: "100%",
         overflow: "hidden",
       }}
     >
@@ -98,18 +109,21 @@ export default function ChordGenerator() {
       >
         Generate My Song
       </Button>
+
       {progression.length > 0 && (
         <Box
           sx={{
-            display: { xs: "block", sm: "flex" },
-            flexDirection: { sm: "row" },
-            gap: 2,
+            display: "flex",
+            flexDirection: { xs: "column", sm: "row" },
             flexWrap: "wrap",
             justifyContent: "center",
             width: "100%",
+            maxHeight: "calc(100vh - 200px)", // Ensure content fits within 100vh
+            overflowY: "auto", // Allow scrolling within the box if needed
+            gap: 2,
           }}
         >
-          {/* Swiper for mobile screens */}
+          {/* Mobile Swiper */}
           <Box
             sx={{
               display: { xs: "block", sm: "none" },
@@ -176,17 +190,9 @@ export default function ChordGenerator() {
                 </SwiperSlide>
               ))}
             </Swiper>
-            {/* Position the pagination here */}
-            <Box
-              sx={{
-                position: "absolute",
-                bottom: "10px",
-                width: "100%",
-                textAlign: "center",
-              }}
-            />
           </Box>
-          {/* Flexbox row for larger screens */}
+
+          {/* Desktop View */}
           <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 4 }}>
             {progression.map((chord, index) => (
               <Card
@@ -222,6 +228,32 @@ export default function ChordGenerator() {
           </Box>
         </Box>
       )}
+
+      {/* Save Button */}
+      <Box
+        sx={{
+          fontSize: 100,
+          cursor: "pointer",
+          display: { xs: "flex", sm: "none" },
+          justifyContent: "center",
+          pt: 5,
+        }}
+        onClick={handleSave}
+      >
+        <SaveIcon color="secondary" fontSize="medium" />
+      </Box>
+      <Box
+        sx={{
+          fontSize: 100,
+          cursor: "pointer",
+          display: { xs: "none", sm: "flex" },
+          justifyContent: "center",
+          p: 0,
+        }}
+        onClick={handleSave}
+      >
+        <SaveIcon color="secondary" fontSize="large" />
+      </Box>
     </Box>
   );
 }

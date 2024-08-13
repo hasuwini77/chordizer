@@ -6,9 +6,7 @@ export default function Home() {
   return (
     <Box
       sx={{
-        minHeight: "100vh",
-        margin: 0,
-        padding: 0,
+        height: "100vh",
         display: "flex",
         flexDirection: "column",
         overflow: "hidden",
