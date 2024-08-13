@@ -92,7 +92,15 @@ export default function ChordGenerator() {
             <Swiper spaceBetween={10} slidesPerView={1} centeredSlides={true}>
               {progression.map((chord, index) => (
                 <SwiperSlide key={index}>
-                  <Card sx={{ width: "80%", margin: "0 auto", mb: 2 }}>
+                  <Card
+                    sx={{
+                      width: "80%",
+                      margin: "0 auto",
+                      mb: 2,
+                      background: "#EBE9FA",
+                      pt: 3,
+                    }}
+                  >
                     <CardMedia
                       component="img"
                       height="150"
