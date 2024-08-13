@@ -60,17 +60,20 @@ function generateChordProgression(): Chord[] {
 
 export default function ChordGenerator() {
   const [progression, setProgression] = useState<Chord[]>([]);
+  const [isProgressionGenerated, setIsProgressionGenerated] = useState(false);
 
   useEffect(() => {
     const savedProgression = localStorage.getItem("chordProgression");
     if (savedProgression) {
       setProgression(JSON.parse(savedProgression));
+      setIsProgressionGenerated(true);
     }
   }, []);
 
   const handleClick = () => {
     const newProgression = generateChordProgression();
     setProgression(newProgression);
+    setIsProgressionGenerated(true);
   };
 
   const handleSave = () => {
@@ -230,30 +233,34 @@ export default function ChordGenerator() {
       )}
 
       {/* Save Button */}
-      <Box
-        sx={{
-          fontSize: 100,
-          cursor: "pointer",
-          display: { xs: "flex", sm: "none" },
-          justifyContent: "center",
-          pt: 5,
-        }}
-        onClick={handleSave}
-      >
-        <SaveIcon color="secondary" fontSize="medium" />
-      </Box>
-      <Box
-        sx={{
-          fontSize: 100,
-          cursor: "pointer",
-          display: { xs: "none", sm: "flex" },
-          justifyContent: "center",
-          p: 0,
-        }}
-        onClick={handleSave}
-      >
-        <SaveIcon color="secondary" fontSize="large" />
-      </Box>
+      {isProgressionGenerated && (
+        <Box
+          sx={{
+            fontSize: 100,
+            cursor: "pointer",
+            display: { xs: "flex", sm: "none" },
+            justifyContent: "center",
+            pt: 5,
+          }}
+          onClick={handleSave}
+        >
+          <SaveIcon color="secondary" fontSize="medium" />
+        </Box>
+      )}
+      {isProgressionGenerated && (
+        <Box
+          sx={{
+            fontSize: 100,
+            cursor: "pointer",
+            display: { xs: "none", sm: "flex" },
+            justifyContent: "center",
+            p: 0,
+          }}
+          onClick={handleSave}
+        >
+          <SaveIcon color="secondary" fontSize="large" />
+        </Box>
+      )}
     </Box>
   );
 }
