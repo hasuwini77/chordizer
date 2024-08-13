@@ -1,12 +1,16 @@
 "use client";
 
-import { useState } from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import { Typography, Card, CardContent, CardMedia } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import Box from "@mui/material/Box";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import Typography from "@mui/material/Typography";
+import { useState } from "react";
+import Button from "@mui/material/Button";
 
 type Chord = {
   name: string;
@@ -68,12 +72,13 @@ export default function ChordGenerator() {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        minHeight: "100vh",
+        flex: 1,
         gap: 2,
         p: 2,
+        overflow: "hidden",
       }}
     >
-      <Button variant="contained" onClick={handleClick}>
+      <Button variant="contained" color="secondary" onClick={handleClick}>
         Generate My Song
       </Button>
       {progression.length > 0 && (
@@ -88,13 +93,40 @@ export default function ChordGenerator() {
           }}
         >
           {/* Swiper for mobile screens */}
-          <Box sx={{ display: { xs: "block", sm: "none" } }}>
-            <Swiper spaceBetween={10} slidesPerView={1} centeredSlides={true}>
+          <Box
+            sx={{
+              display: { xs: "block", sm: "none" },
+              width: "100%",
+              maxWidth: "400px",
+              position: "relative",
+            }}
+          >
+            <style>
+              {`
+                .swiper-pagination-bullet {
+                  background-color: #7b4f9d !important;
+                }
+                .swiper-pagination-bullet-active {
+                  background-color: #9c27b0 !important;
+                }
+              `}
+            </style>
+            <Swiper
+              spaceBetween={12}
+              slidesPerView={1}
+              centeredSlides={true}
+              pagination={{ clickable: true }}
+              modules={[Pagination]}
+              style={{
+                paddingBottom: "30px",
+              }}
+            >
               {progression.map((chord, index) => (
                 <SwiperSlide key={index}>
                   <Card
                     sx={{
-                      width: "80%",
+                      width: "100%",
+                      maxWidth: "300px",
                       margin: "0 auto",
                       mb: 2,
                       background: "#EBE9FA",
@@ -121,6 +153,15 @@ export default function ChordGenerator() {
                 </SwiperSlide>
               ))}
             </Swiper>
+            {/* Position the pagination here */}
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: "10px",
+                width: "100%",
+                textAlign: "center",
+              }}
+            />
           </Box>
           {/* Flexbox row for larger screens */}
           <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
