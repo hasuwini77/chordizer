@@ -70,7 +70,7 @@ export default function ChordGenerator() {
       sx={{
         display: "flex",
         flexDirection: "column",
-        alignItems: "center",
+        alignItems: { xs: "center", sm: "space-evenly" },
         justifyContent: "center",
         flex: 1,
         gap: 2,
@@ -126,11 +126,17 @@ export default function ChordGenerator() {
                   <Card
                     sx={{
                       width: "100%",
-                      maxWidth: "300px",
+                      maxWidth: "220px",
                       margin: "0 auto",
                       mb: 2,
                       background: "#EBE9FA",
                       pt: 3,
+                      boxShadow: `
+                      0 4px 2px rgba(255, 105, 180, 0.1),  
+                      0 0 8px rgba(255, 105, 180, 0.2),  
+                      0 0 11px rgba(138, 43, 226, 0.2),   
+                      0 0 12px rgba(138, 43, 226, 0.4)  
+                    `,
                     }}
                   >
                     <CardMedia
@@ -164,15 +170,24 @@ export default function ChordGenerator() {
             />
           </Box>
           {/* Flexbox row for larger screens */}
-          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 2 }}>
+          <Box sx={{ display: { xs: "none", sm: "flex" }, gap: 4 }}>
             {progression.map((chord, index) => (
               <Card
                 key={index}
-                sx={{ maxWidth: { xs: "100%", sm: 250 }, mb: 2 }}
+                sx={{
+                  maxWidth: { xs: "100%", sm: 450 },
+                  mb: 2,
+                  boxShadow: `
+          0 4px 8px rgba(255, 105, 180, 0.4),  
+          0 0 15px rgba(255, 105, 180, 0.2),  
+          0 0 25px rgba(138, 43, 226, 0.2),   
+          0 0 35px rgba(138, 43, 226, 0.4)  
+        `,
+                }}
               >
                 <CardMedia
                   component="img"
-                  height="140"
+                  height="200"
                   image={chord.image}
                   alt={chord.name}
                 />
