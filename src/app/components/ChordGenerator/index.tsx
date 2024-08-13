@@ -73,12 +73,29 @@ export default function ChordGenerator() {
         alignItems: { xs: "center", sm: "space-evenly" },
         justifyContent: "center",
         flex: 1,
-        gap: 2,
+        gap: { xs: 5, sm: 15 },
         p: 2,
         overflow: "hidden",
       }}
     >
-      <Button variant="contained" color="secondary" onClick={handleClick}>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={handleClick}
+        sx={{
+          fontSize: { xs: "0.9rem", sm: "1.2rem" },
+          px: { xs: 2, sm: 3 },
+          py: { xs: 1, sm: 2 },
+          minWidth: { xs: "150px", sm: "200px" },
+          borderRadius: "10px",
+          boxShadow: `
+                      0 4px 2px rgba(255, 105, 180, 0.1),  
+                      0 0 4px rgba(255, 105, 180, 0.2),  
+                      0 0 11px rgba(138, 43, 226, 0.2),   
+                      0 0 7px rgba(138, 43, 226, 0.4)  
+                    `,
+        }}
+      >
         Generate My Song
       </Button>
       {progression.length > 0 && (
