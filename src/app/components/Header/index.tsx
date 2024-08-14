@@ -24,6 +24,12 @@ const Header = () => {
         "& h1": {
           color: "#fff",
           textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
+          margin: "auto",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+          textAlign: "center",
         },
         "@media (min-width: 800px)": {
           animation: "moveBackground 200s ease infinite",
