@@ -121,8 +121,8 @@ export default function ChordGenerator() {
             flexWrap: "wrap",
             justifyContent: "center",
             width: "100%",
-            maxHeight: "calc(100vh - 200px)", // Ensure content fits within 100vh
-            overflowY: "auto", // Allow scrolling within the box if needed
+            maxHeight: "calc(100vh - 200px)",
+            overflowY: "auto",
             gap: 2,
           }}
         >
@@ -206,8 +206,8 @@ export default function ChordGenerator() {
                   boxShadow: `
           0 4px 8px rgba(255, 105, 180, 0.4),  
           0 0 15px rgba(255, 105, 180, 0.2),  
-          0 0 25px rgba(138, 43, 226, 0.2),   
-          0 0 35px rgba(138, 43, 226, 0.4)  
+          0 0 11px rgba(138, 43, 226, 0.2),   
+          0 0 13px rgba(138, 43, 226, 0.4)  
         `,
                 }}
               >
