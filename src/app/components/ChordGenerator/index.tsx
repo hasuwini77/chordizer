@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
+import useToast from "../Toast";
 
 type Chord = {
   name: string;
@@ -61,6 +62,7 @@ function generateChordProgression(): Chord[] {
 export default function ChordGenerator() {
   const [progression, setProgression] = useState<Chord[]>([]);
   const [isProgressionGenerated, setIsProgressionGenerated] = useState(false);
+  const showToast = useToast();
 
   useEffect(() => {
     const savedProgression = localStorage.getItem("chordProgression");
@@ -78,7 +80,7 @@ export default function ChordGenerator() {
 
   const handleSave = () => {
     localStorage.setItem("chordProgression", JSON.stringify(progression));
-    console.log("Progression saved!");
+    showToast("success", "Successfully <br> Saved your progression!");
   };
 
   return (
