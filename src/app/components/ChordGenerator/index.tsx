@@ -99,7 +99,7 @@ export default function ChordGenerator() {
         color="secondary"
         onClick={handleClick}
         sx={{
-          fontSize: { xs: "1rem", sm: "1.2rem" },
+          fontSize: { xs: "0.9rem", sm: "1.1rem" },
           px: { xs: 2, sm: 3 },
           py: { xs: 1, sm: 2 },
           minWidth: { xs: "150px", sm: "200px" },
@@ -246,7 +246,7 @@ export default function ChordGenerator() {
           }}
           onClick={handleSave}
         >
-          <SaveIcon color="secondary" fontSize="medium" />
+          <SaveIcon color="secondary" fontSize="large" />
         </Box>
       )}
       {isProgressionGenerated && (
