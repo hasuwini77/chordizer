@@ -1,20 +1,5 @@
 import Box from "@mui/material/Box";
 
-// Define keyframes for subtle background image movement
-const keyframes = `
-  @keyframes moveBackground {
-    0% {
-      background-position: 0% 0%;
-    }
-    50% {
-      background-position: 100% 100%;
-    }
-    100% {
-      background-position: 0% 0%;
-    }
-  }
-`;
-
 const Header = () => {
   return (
     <Box
@@ -40,17 +25,8 @@ const Header = () => {
           color: "#fff",
           textShadow: "2px 2px 4px rgba(0, 0, 0, 0.5)",
         },
-        // Inject keyframes into the style
-        "&::before": {
-          content: '""',
-          display: "block",
-          position: "absolute",
-          width: "100%",
-          height: "100%",
-          top: 0,
-          left: 0,
-          zIndex: -1,
-          animation: "moveBackground 10s ease infinite",
+        "@media (min-width: 800px)": {
+          animation: "moveBackground 200s ease infinite",
         },
         "@keyframes moveBackground": {
           "0%": {
