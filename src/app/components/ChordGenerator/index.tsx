@@ -87,7 +87,7 @@ export default function ChordGenerator() {
     localStorage.removeItem("chordProgression");
     setProgression([]);
     setIsProgressionGenerated(false);
-    showToast("success", "Successfully <br> Reset your progression!");
+    showToast("warning", "Your progression <br> has now been reset!");
   };
 
   return (
@@ -241,47 +241,42 @@ export default function ChordGenerator() {
         </Box>
       )}
 
-      {/* Save Button */}
+      {/* Save and Reset Buttons */}
       {isProgressionGenerated && (
-        <Box
-          sx={{
-            fontSize: 100,
-            cursor: "pointer",
-            display: { xs: "flex", sm: "none" },
-            justifyContent: "center",
-            pt: 5,
-          }}
-          onClick={handleSave}
-        >
-          <SaveIcon color="secondary" fontSize="large" />
-        </Box>
-      )}
-      {isProgressionGenerated && (
-        <Box
-          sx={{
-            fontSize: 100,
-            cursor: "pointer",
-            display: { xs: "none", sm: "flex" },
-            justifyContent: "center",
-            p: 0,
-          }}
-          onClick={handleSave}
-        >
-          <SaveIcon color="secondary" fontSize="large" />
-        </Box>
-      )}
-      {isProgressionGenerated && (
-        <Box
-          sx={{
-            fontSize: 100,
-            cursor: "pointer",
-            display: "flex",
-            justifyContent: "center",
-            p: 0,
-          }}
-          onClick={handleReset}
-        >
-          <RestartAltIcon color="secondary" fontSize="large" />
+        <Box sx={{ display: "flex", gap: 2, pt: 5 }}>
+          <Box
+            sx={{
+              fontSize: 100,
+              cursor: "pointer",
+              display: { xs: "flex", sm: "none" },
+              justifyContent: "center",
+            }}
+            onClick={handleSave}
+          >
+            <SaveIcon color="secondary" fontSize="large" />
+          </Box>
+          <Box
+            sx={{
+              fontSize: 100,
+              cursor: "pointer",
+              display: { xs: "none", sm: "flex" },
+              justifyContent: "center",
+            }}
+            onClick={handleSave}
+          >
+            <SaveIcon color="secondary" fontSize="large" />
+          </Box>
+          <Box
+            sx={{
+              fontSize: 100,
+              cursor: "pointer",
+              display: "flex",
+              justifyContent: "center",
+            }}
+            onClick={handleReset}
+          >
+            <RestartAltIcon color="secondary" fontSize="large" />
+          </Box>
         </Box>
       )}
     </Box>
