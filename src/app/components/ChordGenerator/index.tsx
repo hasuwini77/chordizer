@@ -12,6 +12,7 @@ import Typography from "@mui/material/Typography";
 import { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import SaveIcon from "@mui/icons-material/Save";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import useToast from "../Toast";
 
 type Chord = {
@@ -49,7 +50,6 @@ const chordsInKeyD: Chord[] = [
 
 const chordGroups = [chordsInKeyC, chordsInKeyG, chordsInKeyD];
 
-// Generate a random chord progression of 4 unique chords from the same key
 function generateChordProgression(): Chord[] {
   const numChords = 4;
   const selectedGroup =
@@ -81,6 +81,13 @@ export default function ChordGenerator() {
   const handleSave = () => {
     localStorage.setItem("chordProgression", JSON.stringify(progression));
     showToast("success", "Successfully <br> Saved your progression!");
+  };
+
+  const handleReset = () => {
+    localStorage.removeItem("chordProgression");
+    setProgression([]);
+    setIsProgressionGenerated(false);
+    showToast("success", "Successfully <br> Reset your progression!");
   };
 
   return (
@@ -261,6 +268,20 @@ export default function ChordGenerator() {
           onClick={handleSave}
         >
           <SaveIcon color="secondary" fontSize="large" />
+        </Box>
+      )}
+      {isProgressionGenerated && (
+        <Box
+          sx={{
+            fontSize: 100,
+            cursor: "pointer",
+            display: "flex",
+            justifyContent: "center",
+            p: 0,
+          }}
+          onClick={handleReset}
+        >
+          <RestartAltIcon color="secondary" fontSize="large" />
         </Box>
       )}
     </Box>
